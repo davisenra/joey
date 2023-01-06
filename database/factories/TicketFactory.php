@@ -17,7 +17,12 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => fake()->sentence(),
+            'description' => fake()->paragraph(),
+            'priority' => fake()->randomElement(['low', 'normal', 'high']),
+            'status' => 'open',
+            'is_resolved' => false,
+            'is_locked' => false,
         ];
     }
 }
