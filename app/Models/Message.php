@@ -14,7 +14,7 @@ class Message extends Model
         'message',
     ];
 
-    public function author(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
