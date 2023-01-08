@@ -29,6 +29,7 @@ class LabelSeeder extends Seeder
                 ]);
             } catch (QueryException) {
                 $i++;
+
                 continue;
             }
         }

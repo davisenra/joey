@@ -29,6 +29,7 @@ class CategorySeeder extends Seeder
                 ]);
             } catch (QueryException) {
                 $i++;
+
                 continue;
             }
         }
