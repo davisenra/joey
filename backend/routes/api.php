@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::controller(UserController::class)->group(function () {
+        Route::get('/me', 'me');
         Route::get('/users', 'index');
         Route::get('/users/{user:uuid}/{tickets?}', 'show');
     });
