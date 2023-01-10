@@ -1,5 +1,25 @@
-<script setup></script>
+<script setup>
+import { RouterView } from "vue-router";
+import HeaderComponent from "./components/Header/HeaderComponent.vue";
+import SidebarComponent from "@/components/Sidebar/SidebarComponent.vue";
+import { useAuthStore } from "./stores/auth";
+import { ref } from "vue";
+
+const authStore = useAuthStore();
+const sidebarOpen = ref(false);
+const handleSidebarToggle = () => (sidebarOpen.value = !sidebarOpen.value);
+</script>
 
 <template>
-  <h1>Test</h1>
+  <HeaderComponent @toggle-sidebar="handleSidebarToggle" />
+  <div class="flex flex-grow h-full">
+    <Transition name="slide-fade">
+      <SidebarComponent v-show="authStore.isAuthenticated && sidebarOpen" />
+    </Transition>
+    <div class="container mx-auto">
+      <div class="flex flex-grow h-full mt-8 px-2">
+        <RouterView />
+      </div>
+    </div>
+  </div>
 </template>
