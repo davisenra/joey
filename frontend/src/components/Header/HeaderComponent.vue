@@ -28,17 +28,19 @@ const handeToggle = () => {
         <JoeyLogo /> <span class="text-gray-700 ml-3">Joey</span>
       </div>
       <Transition appear>
-        <div v-if="!isAuthenticated" class="flex gap-3">
-          <HeaderLink route="/login">Login <LoginIcon /></HeaderLink>
-          <HeaderLink route="/register">Register <RegisterIcon /></HeaderLink>
-        </div>
-        <div v-else class="flex">
-          <button
-            class="block rounded text-gray-700 px-3 py-1 font-medium hover:text-gray-900 hover:bg-gray-100 transition-all"
-            @click="authStore.logout()"
-          >
-            Logout <LogoutIcon />
-          </button>
+        <div>
+          <div v-if="!isAuthenticated" class="flex gap-3">
+            <HeaderLink route="/login">Login <LoginIcon /></HeaderLink>
+            <HeaderLink route="/register">Register <RegisterIcon /></HeaderLink>
+          </div>
+          <div v-else class="flex">
+            <button
+              class="block rounded text-gray-700 px-3 py-1 font-medium hover:text-gray-900 hover:bg-gray-100 transition-all"
+              @click="authStore.logout()"
+            >
+              Logout <LogoutIcon />
+            </button>
+          </div>
         </div>
       </Transition>
     </div>

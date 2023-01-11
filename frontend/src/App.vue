@@ -17,7 +17,7 @@ const handleSidebarToggle = () => (sidebarOpen.value = !sidebarOpen.value);
       <SidebarComponent v-show="authStore.isAuthenticated && sidebarOpen" />
     </Transition>
     <div class="container mx-auto">
-      <div class="flex flex-grow h-full mt-8 px-2">
+      <div class="flex flex-grow h-full mt-8 px-4">
         <RouterView />
       </div>
     </div>

@@ -1,12 +1,11 @@
 <script setup>
-import { ref } from "vue";
-import axios from "@/lib/axios";
-
-const user = ref(await axios.get("/api/me"));
+const props = defineProps({
+  name: null,
+});
 </script>
 
 <template>
   <div>
-    <p class="text-xl font-medium">Welcome back, {{ user.data.name }}!</p>
+    <p class="text-xl font-medium">Welcome back, {{ props.name }}!</p>
   </div>
 </template>

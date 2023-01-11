@@ -1,11 +1,11 @@
 <script setup>
-import UserInfo from "@/components/Dashboard/UserInfo.vue";
+import DashboardLayout from "../components/Dashboard/DashboardLayout.vue";
 </script>
 
 <template>
   <div class="w-full container mx-auto">
     <Suspense>
-      <UserInfo />
+      <DashboardLayout />
     </Suspense>
   </div>
 </template>

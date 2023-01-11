@@ -1,5 +1,8 @@
 <script setup>
 import SidebarLink from "./SidebarLink.vue";
+import { useAuthStore } from "../../stores/auth";
+
+const authStore = useAuthStore();
 </script>
 
 <template>
@@ -7,9 +10,11 @@ import SidebarLink from "./SidebarLink.vue";
     <ul class="mt-8 flex-grow pl-1 pr-1 pb-4 space-y-3 text-sm">
       <SidebarLink name="Dashboard" route="/" icon="fa-solid fa-home" />
       <SidebarLink name="Tickets" route="/" icon="fa-solid fa-ticket" />
-      <SidebarLink name="Users" route="/" icon="fa-solid fa-users" />
-      <SidebarLink name="Categories" route="/" icon="fa-solid fa-clone" />
-      <SidebarLink name="Labels" route="/" icon="fa-solid fa-tag" />
+      <div v-show="authStore.isManager">
+        <SidebarLink name="Users" route="/" icon="fa-solid fa-users" />
+        <SidebarLink name="Categories" route="/" icon="fa-solid fa-clone" />
+        <SidebarLink name="Labels" route="/" icon="fa-solid fa-tag" />
+      </div>
     </ul>
   </div>
 </template>
