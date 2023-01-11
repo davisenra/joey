@@ -20,6 +20,8 @@ class TicketResource extends JsonResource
             'assigned_agent' => $this->assigned_agent,
             'title' => $this->title,
             'description' => $this->description,
+            'status' => $this->status,
+            'priority' => $this->priority,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'labels' => LabelResource::collection($this->whenLoaded('labels')),
             'created_at' => $this->created_at,
