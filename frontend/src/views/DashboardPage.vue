@@ -3,7 +3,7 @@ import DashboardLayout from "../components/Dashboard/DashboardLayout.vue";
 </script>
 
 <template>
-  <div class="w-full container mx-auto">
+  <div class="container mx-auto w-full">
     <Suspense>
       <DashboardLayout />
     </Suspense>

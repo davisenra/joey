@@ -14,7 +14,10 @@ const handleSidebarToggle = () => (sidebarOpen.value = !sidebarOpen.value);
   <HeaderComponent @toggle-sidebar="handleSidebarToggle" />
   <div class="flex flex-grow h-full">
     <Transition name="slide-fade">
-      <SidebarComponent v-show="authStore.isAuthenticated && sidebarOpen" />
+      <SidebarComponent
+        v-show="authStore.isAuthenticated && sidebarOpen"
+        @toggle-sidebar="handleSidebarToggle"
+      />
     </Transition>
     <div class="container mx-auto">
       <div class="flex flex-grow h-full mt-8 px-4">

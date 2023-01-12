@@ -15,7 +15,7 @@ export const useAuthStore = defineStore("auth", {
       await axios.get("/sanctum/csrf-cookie");
     },
     async getUser() {
-      return await axios.get("/api/me");
+      return (await axios.get("/api/me")).data;
     },
     async login(data) {
       await this.getToken();
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore("auth", {
 
       if (res.status === 204 || res.status === 302) {
         const user = await this.getUser();
-        localStorage.setItem("user", JSON.stringify(user.data));
+        localStorage.setItem("user", JSON.stringify(user));
         this.authUser = localStorage.getItem("user");
         this.router.push("/");
       }
