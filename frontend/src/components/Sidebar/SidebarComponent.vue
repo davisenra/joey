@@ -1,19 +1,49 @@
 <script setup>
 import SidebarLink from "./SidebarLink.vue";
 import { useAuthStore } from "../../stores/auth";
-
 const authStore = useAuthStore();
+const emits = defineEmits(["toggleSidebar"]);
+const handleToggle = () => {
+  emits("toggleSidebar");
+};
 </script>
 
 <template>
-  <div class="bg-white fixed flex h-full pl-3 pr-3 w-96 md:w-60 shadow-md">
-    <ul class="mt-8 flex-grow pl-1 pr-1 pb-4 space-y-3 text-sm">
-      <SidebarLink name="Dashboard" route="/" icon="fa-solid fa-home" />
-      <SidebarLink name="Tickets" route="/" icon="fa-solid fa-ticket" />
+  <div
+    class="absolute z-10 flex h-full w-96 bg-white pl-3 pr-3 shadow-lg md:w-60"
+  >
+    <ul class="mt-8 flex-grow space-y-3 pl-1 pr-1 pb-4 text-sm">
+      <SidebarLink
+        name="Dashboard"
+        route="/"
+        icon="fa-solid fa-home"
+        @click="handleToggle"
+      />
+      <SidebarLink
+        name="Tickets"
+        route="/tickets"
+        icon="fa-solid fa-ticket"
+        @click="handleToggle"
+      />
       <div v-show="authStore.isManager">
-        <SidebarLink name="Users" route="/" icon="fa-solid fa-users" />
-        <SidebarLink name="Categories" route="/" icon="fa-solid fa-clone" />
-        <SidebarLink name="Labels" route="/" icon="fa-solid fa-tag" />
+        <SidebarLink
+          name="Users"
+          route="/"
+          icon="fa-solid fa-users"
+          @click="handleToggle"
+        />
+        <SidebarLink
+          name="Categories"
+          route="/"
+          icon="fa-solid fa-clone"
+          @click="handleToggle"
+        />
+        <SidebarLink
+          name="Labels"
+          route="/"
+          icon="fa-solid fa-tag"
+          @click="handleToggle"
+        />
       </div>
     </ul>
   </div>

@@ -4,13 +4,15 @@ import TotalTicketsCard from "./TotalTicketsCard.vue";
 import OpenTicketsCard from "./OpenTicketsCard.vue";
 import { ref } from "vue";
 import axios from "@/lib/axios";
-import { useAuthStore } from "../../stores/auth";
 
-const authStore = useAuthStore();
-const authUser = authStore.authUser;
-const userData = ref(
-  (await axios.get(`/api/users/${authUser.uuid}/tickets`)).data.data
-);
+const getUserTickets = async () => {
+  const authUser = JSON.parse(localStorage.getItem("user"));
+  const userTickets = (await axios.get(`/api/users/${authUser.uuid}/tickets`))
+    .data.data;
+  return userTickets;
+};
+
+const userData = ref(await getUserTickets());
 const userTickets = userData.value.tickets;
 </script>
 

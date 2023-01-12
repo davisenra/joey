@@ -6,13 +6,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex bg-white py-3 px-3 rounded-md max-w-sm shadow-sm">
-    <div class="rounded-full h-12 w-12 p-2 bg-red-100 fill-red-500">
+  <div class="flex max-w-sm rounded-md bg-white py-3 px-3 shadow-sm">
+    <div class="h-12 w-12 rounded-full bg-red-100 fill-red-500 p-2">
       <TicketIcon />
     </div>
-    <div class="flex flex-col ml-4">
+    <div class="ml-4 flex flex-col">
       <p class="text-neutral-900">Total tickets</p>
-      <p class="font-bold text-lg">{{ props.tickets.length }}</p>
+      <p class="text-lg font-bold">{{ props.tickets.length }}</p>
     </div>
   </div>
 </template>

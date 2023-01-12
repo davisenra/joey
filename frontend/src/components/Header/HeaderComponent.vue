@@ -11,7 +11,7 @@ import MenuButton from "./MenuButton.vue";
 const authStore = useAuthStore();
 const { isAuthenticated } = storeToRefs(authStore);
 const emits = defineEmits(["toggleSidebar"]);
-const handeToggle = () => {
+const handleToggle = () => {
   emits("toggleSidebar");
 };
 </script>
@@ -23,7 +23,7 @@ const handeToggle = () => {
         class="flex items-center justify-center px-1 h-full font-bold text-2xl"
       >
         <Transition appear>
-          <MenuButton v-show="isAuthenticated" @click="handeToggle" />
+          <MenuButton v-show="isAuthenticated" @click="handleToggle" />
         </Transition>
         <JoeyLogo /> <span class="text-gray-700 ml-3">Joey</span>
       </div>
