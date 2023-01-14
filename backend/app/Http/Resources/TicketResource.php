@@ -16,7 +16,6 @@ class TicketResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'user' => $this->user_id,
             'assigned_agent' => $this->assigned_agent,
             'title' => $this->title,
             'description' => $this->description,
@@ -24,6 +23,7 @@ class TicketResource extends JsonResource
             'priority' => $this->priority,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'labels' => LabelResource::collection($this->whenLoaded('labels')),
+            'messages' => MessageResource::collection($this->whenLoaded('messages')),
             'created_at' => $this->created_at,
         ];
     }
