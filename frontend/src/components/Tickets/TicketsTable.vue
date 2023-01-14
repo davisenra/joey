@@ -16,9 +16,9 @@ const props = defineProps({
       <thead class="text-sm uppercase text-gray-700">
         <tr>
           <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3 text-center">Created</th>
           <th scope="col" class="px-6 py-3 text-center">Priority</th>
           <th scope="col" class="px-6 py-3 text-center">Status</th>
-          <th scope="col" class="px-6 py-3 text-center">Created</th>
           <th scope="col" class="px-6 py-3 text-center">Action</th>
         </tr>
       </thead>
@@ -31,17 +31,17 @@ const props = defineProps({
             {{ ticket.title }}
           </th>
           <td class="px-6 py-4 text-center">
+            {{ moment(ticket.created_at).fromNow() }}
+          </td>
+          <td class="px-6 py-4 text-center">
             <TicketPriorityLabel :priority="ticket.priority" />
           </td>
           <td class="px-6 py-4 text-center">
             <TicketStatusLabel :status="ticket.status" />
           </td>
           <td class="px-6 py-4 text-center">
-            {{ moment(ticket.created_at).fromNow() }}
-          </td>
-          <td class="px-6 py-4 text-center">
             <router-link
-              to=""
+              :to="'/tickets/' + ticket.uuid"
               class="rounded bg-gray-100 px-3 py-1 hover:bg-gray-200"
             >
               Show
