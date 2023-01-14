@@ -15,6 +15,10 @@ const router = createRouter({
       component: () => import("@/views/TicketsPage.vue"),
     },
     {
+      path: "/tickets/:ticketId",
+      component: () => import("@/views/TicketPage.vue"),
+    },
+    {
       path: "/login",
       name: "login",
       component: () => import("../views/LoginPage.vue"),
