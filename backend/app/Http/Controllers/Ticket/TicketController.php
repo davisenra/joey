@@ -46,8 +46,8 @@ class TicketController extends Controller
     {
         $ticket->loadMissing('categories');
         $ticket->loadMissing('labels');
-        $ticket->loadMissing('messages');
-        $ticket->loadMissing('messages.user');
+        // $ticket->loadMissing('messages');
+        // $ticket->loadMissing('messages.user');
 
         return new TicketResource($ticket);
     }

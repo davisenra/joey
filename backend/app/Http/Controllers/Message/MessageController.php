@@ -21,7 +21,12 @@ class MessageController extends Controller
 
     public function index(Ticket $ticket): AnonymousResourceCollection
     {
-        return MessageResource::collection($ticket->messages()->get());
+        $messages = $ticket->messages()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $messages->loadMissing('user');
+
+        return MessageResource::collection($messages);
     }
 
     public function store(Ticket $ticket, StoreMessageRequest $request): MessageResource
@@ -30,8 +35,6 @@ class MessageController extends Controller
         $user = $request->user();
 
         $message = $this->service->createMessage($ticket, $user, $data);
-        unset($message->user);
-        unset($message->ticket);
 
         return new MessageResource($message);
     }
