@@ -1,5 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
+import { ref } from "vue";
 import axios from "@/lib/axios";
 import moment from "moment";
 import TicketStatusLabel from "../Tickets/TicketStatusLabel.vue";
@@ -8,9 +9,14 @@ import TicketCategory from "./TicketCategory.vue";
 import TicketLabel from "./TicketLabel.vue";
 import TicketMessages from "./TicketMessages.vue";
 
+const fetchTickets = async () => {
+  const response = await axios.get(`/api/tickets/${ticketId}`);
+  return response.data.data;
+};
+
 const ticketId = useRoute().params.ticketId;
-const ticket = (await axios.get(`/api/tickets/${ticketId}`)).data.data;
-console.log(ticket);
+const ticket = ref(await fetchTickets());
+// console.log(ticket.value);
 </script>
 
 <template>
@@ -23,7 +29,7 @@ console.log(ticket);
     <div class="py-3">
       <div class="flex flex-col justify-between md:flex-row">
         <h2 class="text-lg font-bold text-gray-700">{{ ticket.title }}</h2>
-        <p class="text-gray-500">
+        <p class="text-sm text-gray-500">
           Created {{ moment(ticket.created_at).fromNow() }}
         </p>
       </div>
@@ -59,6 +65,6 @@ console.log(ticket);
   </div>
 
   <div class="relative mt-4 w-full rounded-md bg-white px-6 py-6 shadow">
-    <TicketMessages :messages="ticket.messages" />
+    <TicketMessages />
   </div>
 </template>
