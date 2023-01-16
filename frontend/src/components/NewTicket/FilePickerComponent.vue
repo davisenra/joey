@@ -1,9 +1,30 @@
 <script setup>
 import CloudUploadIcon from "../Icons/CloudUploadIcon.vue";
+import TrashIcon from "../Icons/TrashIcon.vue";
+import { ref } from "vue";
+
+const files = ref([]);
+const file = ref(null);
+
+const handleUpload = () => {
+  files.value.push(...file.value.files);
+};
+
+const removeImage = (i) => {
+  files.value.splice(i, 1);
+};
+
+const generateURL = (file) => {
+  let fileSrc = URL.createObjectURL(file);
+  setTimeout(() => {
+    URL.revokeObjectURL(fileSrc);
+  }, 1000);
+  return fileSrc;
+};
 </script>
 
 <template>
-  <div class="flex w-full items-center justify-center">
+  <div class="flex w-full flex-col items-center justify-center">
     <label
       class="flex h-36 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
     >
@@ -13,7 +34,32 @@ import CloudUploadIcon from "../Icons/CloudUploadIcon.vue";
         </p>
         <p class="text-xs text-gray-500">Allowed formats: .jpg .png .gif</p>
       </div>
-      <input type="file" class="hidden" />
+      <input
+        class="hidden"
+        type="file"
+        name="file"
+        id="fileInput"
+        ref="file"
+        multiple
+        @change="handleUpload"
+        accept=".jpg,.jpeg,.png"
+      />
     </label>
+
+    <div
+      class="mt-4 flex w-full flex-wrap items-center justify-center self-start p-3 shadow"
+      v-show="files.length > 0"
+    >
+      <div
+        v-for="file in files"
+        :key="file.name"
+        class="m-2 flex flex-col items-center justify-center rounded border bg-gray-50 p-2"
+      >
+        <img :src="generateURL(file)" class="h-24 w-24" />
+        <button type="button" @click="removeImage">
+          <TrashIcon class="mt-2 text-red-500 hover:text-red-700" />
+        </button>
+      </div>
+    </div>
   </div>
 </template>

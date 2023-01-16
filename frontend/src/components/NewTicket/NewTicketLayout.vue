@@ -62,6 +62,13 @@ import FilePickerComponent from "./FilePickerComponent.vue";
           <p class="font-regular mb-2 text-gray-700">Screenshots</p>
           <FilePickerComponent />
         </div>
+
+        <button
+          type="submit"
+          class="mt-6 block w-full rounded bg-green-300 px-3 py-2 font-medium transition-all hover:bg-green-400"
+        >
+          Create
+        </button>
       </form>
     </div>
   </div>
