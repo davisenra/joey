@@ -16,7 +16,6 @@ const fetchTickets = async () => {
 
 const ticketId = useRoute().params.ticketId;
 const ticket = ref(await fetchTickets());
-// console.log(ticket.value);
 </script>
 
 <template>
