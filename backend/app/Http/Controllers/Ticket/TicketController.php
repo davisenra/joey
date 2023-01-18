@@ -23,7 +23,7 @@ class TicketController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $tickets = Ticket::paginate(20);
+        $tickets = Ticket::orderBy('created_at', 'desc')->paginate(20);
         $tickets->loadMissing('categories');
         $tickets->loadMissing('labels');
 

@@ -39,10 +39,12 @@ class TicketService
             $ticket->labels()->sync($labelsIds);
         }
 
-        $ticket->addMultipleMediaFromRequest(['images'])
-            ->each(function ($fileAdder) {
-                $fileAdder->toMediaCollection('screenshots');
-            });
+        if (isset($data['images'])) {
+            $ticket->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('screenshots');
+                });
+        }
 
         return $ticket;
     }
