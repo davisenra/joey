@@ -11,7 +11,7 @@ export const useNewTicketStore = defineStore("newTicket", {
     getCategories: (state) => state.categories,
   },
   actions: {
-    submitTicket(payload) {
+    async submitTicket(payload) {
       const formData = new FormData();
       formData.append("title", payload.title);
       formData.append("description", payload.description);
@@ -23,12 +23,15 @@ export const useNewTicketStore = defineStore("newTicket", {
         formData.append("categories[]", category)
       );
 
-      const response = axios.post("/api/tickets", formData, {
+      const response = await axios.post("/api/tickets", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+
+      if (response.status == 201) {
+        this.router.push(`/tickets/${response.data.data.uuuid}`);
+      }
     },
     updateCategories(category) {
       const index = this.categories.indexOf(category);

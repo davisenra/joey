@@ -65,7 +65,7 @@ const messages = ref(await fetchMessages());
         <p class="font-medium">
           {{ message.user.name }}
           <span class="ml-1 text-xs font-normal text-gray-500">
-            {{ moment(message.created_at).startOf("hour").fromNow() }}
+            {{ moment(message.created_at).fromNow() }}
           </span>
         </p>
         <button

@@ -8,6 +8,7 @@ import TicketPriorityLabel from "../Tickets/TicketPriorityLabel.vue";
 import TicketCategory from "./TicketCategory.vue";
 import TicketLabel from "./TicketLabel.vue";
 import TicketMessages from "./TicketMessages.vue";
+import TicketImages from "./TicketImages.vue";
 
 const fetchTickets = async () => {
   const response = await axios.get(`/api/tickets/${ticketId}`);
@@ -60,6 +61,10 @@ const ticket = ref(await fetchTickets());
         :key="label"
         :label="label.name"
       />
+    </div>
+
+    <div class="mb-3">
+      <TicketImages :images="ticket.media" />
     </div>
   </div>
 
