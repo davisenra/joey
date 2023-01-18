@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Ticket\AssignTicketToAgentRequest;
 use App\Http\Requests\Ticket\StoreTicketRequest;
 use App\Http\Requests\Ticket\UpdateTicketRequest;
-use App\Http\Resources\TicketResource;
+use App\Http\Resources\Ticket\TicketResource;
 use App\Models\Ticket;
 use App\Models\User;
 use App\Services\Ticket\TicketService;
@@ -30,7 +30,7 @@ class TicketController extends Controller
         return TicketResource::collection($tickets);
     }
 
-    public function store(StoreTicketRequest $request): TicketResource
+    public function store(StoreTicketRequest $request)
     {
         $data = $request->validated();
         $user = $request->user();
@@ -46,8 +46,7 @@ class TicketController extends Controller
     {
         $ticket->loadMissing('categories');
         $ticket->loadMissing('labels');
-        // $ticket->loadMissing('messages');
-        // $ticket->loadMissing('messages.user');
+        $ticket->loadMissing('media');
 
         return new TicketResource($ticket);
     }

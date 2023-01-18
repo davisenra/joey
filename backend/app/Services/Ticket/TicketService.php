@@ -39,7 +39,10 @@ class TicketService
             $ticket->labels()->sync($labelsIds);
         }
 
-        // TODO: implementar salvamento das imagens fornecidas no request
+        $ticket->addMultipleMediaFromRequest(['images'])
+            ->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('screenshots');
+            });
 
         return $ticket;
     }

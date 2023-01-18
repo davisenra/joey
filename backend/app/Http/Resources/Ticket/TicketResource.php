@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Ticket;
 
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\LabelResource;
+use App\Http\Resources\MessageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TicketResource extends JsonResource
@@ -24,6 +27,7 @@ class TicketResource extends JsonResource
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'labels' => LabelResource::collection($this->whenLoaded('labels')),
             'messages' => MessageResource::collection($this->whenLoaded('messages')),
+            'media' => TicketMediaResource::collection($this->whenLoaded('media')),
             'created_at' => $this->created_at,
         ];
     }
