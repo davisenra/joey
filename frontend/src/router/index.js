@@ -28,7 +28,7 @@ const router = createRouter({
       component: () => import("../views/LoginPage.vue"),
       beforeEnter: (to) => {
         const authStore = useAuthStore();
-        if (authStore.isAuthenticated && to.name == "login") {
+        if (authStore.isAuthenticated && to.name === "login") {
           return "/";
         }
       },
@@ -39,7 +39,7 @@ const router = createRouter({
       component: () => import("../views/RegisterPage.vue"),
       beforeEnter: (to) => {
         const authStore = useAuthStore();
-        if (authStore.isAuthenticated && to.name == "register") {
+        if (authStore.isAuthenticated && to.name === "register") {
           return "/";
         }
       },

@@ -31,6 +31,23 @@ export const useAuthStore = defineStore("auth", {
         this.router.push("/");
       }
     },
+    async register(data) {
+      await this.getToken();
+      const res = await axios.post("/register", {
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        password: data.password,
+        password_confirmation: data.confirmPassword,
+      });
+
+      if (res.status === 204) {
+        const user = await this.getUser();
+        localStorage.setItem("user", JSON.stringify(user));
+        this.authUser = localStorage.getItem("user");
+        this.router.push("/");
+      }
+    },
     async logout() {
       await axios.post("/logout");
       localStorage.removeItem("user");
