@@ -25,26 +25,27 @@ const handleToggle = () => {
         icon="fa-solid fa-ticket"
         @click="handleToggle"
       />
-      <div v-show="authStore.isManager">
-        <SidebarLink
-          name="Users"
-          route="/"
-          icon="fa-solid fa-users"
-          @click="handleToggle"
-        />
-        <SidebarLink
-          name="Categories"
-          route="/"
-          icon="fa-solid fa-clone"
-          @click="handleToggle"
-        />
-        <SidebarLink
-          name="Labels"
-          route="/"
-          icon="fa-solid fa-tag"
-          @click="handleToggle"
-        />
-      </div>
+      <SidebarLink
+        name="Users"
+        route="/"
+        icon="fa-solid fa-users"
+        v-show="authStore.authUser.role === 'manager'"
+        @click="handleToggle"
+      />
+      <SidebarLink
+        name="Categories"
+        route="/"
+        icon="fa-solid fa-clone"
+        v-show="authStore.authUser.role === 'manager'"
+        @click="handleToggle"
+      />
+      <SidebarLink
+        name="Labels"
+        route="/"
+        icon="fa-solid fa-tag"
+        v-show="authStore.authUser.role === 'manager'"
+        @click="handleToggle"
+      />
     </ul>
   </div>
 </template>

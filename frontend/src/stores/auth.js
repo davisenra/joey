@@ -6,8 +6,6 @@ export const useAuthStore = defineStore("auth", {
     authUser: JSON.parse(localStorage.getItem("user")),
   }),
   getters: {
-    isManager: (state) =>
-      state.authUser !== null && state.authUser.role == "manager",
     isAuthenticated: (state) => state.authUser !== null,
   },
   actions: {
